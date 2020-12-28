@@ -1,0 +1,76 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Bottom_Bar.png</file>
+        <file>Top_Bar.png</file>
+        <file>Welcome_Text.png</file>
+        <file>Left_Ring.png</file>
+        <file>Right_Ring.png</file>
+        <file>FG.png</file>
+        <file>FG_inside.png</file>
+        <file>speedo_glow.png</file>
+        <file>Tacho_glow.png</file>
+        <file>ABS.png</file>
+        <file>Airbag.png</file>
+        <file>Battery.png</file>
+        <file>Cruise_control.png</file>
+        <file>Headlamp.png</file>
+        <file>left_turn.png</file>
+        <file>MIL.png</file>
+        <file>Park_Brake.png</file>
+        <file>PS_Failure.png</file>
+        <file>right_turn.png</file>
+        <file>Seat_Belt.png</file>
+        <file>HI_beam.png</file>
+        <file>Pricol_logo.png</file>
+        <file>Start_msg.png</file>
+        <file>Speedo_text.png</file>
+        <file>Tacho_text.png</file>
+        <file>FG_filling_R.png</file>
+        <file>FG_glow_R.png</file>
+        <file>FG_graduations_R.png</file>
+        <file>FG_fil_left.png</file>
+        <file>FG_glow_left.png</file>
+        <file>FG_grad_left.png</file>
+        <file>Final_pointer.png</file>
+        <file>centre_black.png</file>
+        <file>Center_White.png</file>
+        <file>Center_Pink.png</file>
+        <file>Center_Large_2.png</file>
+        <file>Center_Large_3.png</file>
+        <file>Sport_Mode_ring.png</file>
+        <file>Sports_inner_ring.png</file>
+        <file>Sport_lines.png</file>
+        <file>Sport_text.png</file>
+        <file>Sport_text_movement.png</file>
+        <file>Sports_Bottom.png</file>
+        <file>Sports_topbar.png</file>
+        <file>rpm_red_glow.png</file>
+        <file>sport_numbers.png</file>
+        <file>Sports.qml</file>
+        <file>Sports_red_FG.png</file>
+        <file>Sports_red_TG.png</file>
+        <file>FG_graphics.png</file>
+        <file>TG_graphics.png</file>
+        <file>FG_bar 1.png</file>
+        <file>FG_bar 2.png</file>
+        <file>FG_bar 3.png</file>
+        <file>FG_bar 4.png</file>
+        <file>FG_bar 5.png</file>
+        <file>FG_bar 6.png</file>
+        <file>FG_bar 7.png</file>
+        <file>TG_bar 1.png</file>
+        <file>TG_bar 2.png</file>
+        <file>TG_bar 3.png</file>
+        <file>TG_bar 4.png</file>
+        <file>TG_bar 5.png</file>
+        <file>TG_bar 6.png</file>
+        <file>TG_bar 7.png</file>
+        <file>sport_speedo pointer.png</file>
+        <file>Blue_arc.png</file>
+        <file>Door ajar pic.png</file>
+        <file>TG.png</file>
+        <file>Sports_graduation.png</file>
+        <file>speedometer.qml</file>
+    </qresource>
+</RCC>
