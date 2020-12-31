@@ -1,0 +1,274 @@
+import QtQuick 2.0
+
+Item{
+    id : valuetable
+    property int speed : 0
+    property real spd_fill_angle : 0
+    property int spd_fill_x : 0
+    property int spd_fill_y : 0
+
+    property int tach : 0
+    property real tach_fill_angle : 0
+    property int tach_fill_x : 0
+    property int tach_fill_y : 0
+
+    property int main_menu_no : 0
+    property int sub_menu_no : 0
+    property int ent_menu_no : 0
+    property int tmp_sub_menu_no : 0
+
+    property int func_sub_menu_no : 0
+    property int theme_sub_menu_no : 0
+
+    property real menu_thin_hilit_scale : 0
+    property real menu_thik_hilit_scale : 0
+    property real menu_ent_hilit_scale : 0
+
+    property real menu_scale:0
+    property int menu_x:893
+    property real menu_glow_opac:0.5
+
+    property real menu_icon_deg_rev: 0
+    property real menu_icon_deg_fwd: 0
+
+  //  SequentialAnimation
+  //  {
+  //      loops:Animation.Infinite
+/*********************************** Main menu start **********************************/
+        SequentialAnimation
+        {
+            SequentialAnimation
+            {
+                PropertyAction
+                {
+                    target:valuetable
+                    property:"tmp_sub_menu_no"
+                    value:0
+                }
+
+                ParallelAnimation
+                {
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_scale"
+                        from: 0.01
+                        to: 1
+                        duration: 500
+                    }
+                    PropertyAction
+                    {
+                        target:valuetable
+                        property:"menu_x"
+                        value:830
+                    }
+                }
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_x"
+                    from: 830
+                    to: 630
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target:valuetable
+                    property: "menu_glow_opac"
+                    from: 0.5
+                    to: 1
+                    duration: 200
+                }
+
+                NumberAnimation
+                {
+                    target:valuetable
+                    property: "menu_glow_opac"
+                    from: 1
+                    to: 0.5
+                    duration: 200
+                }
+
+                PropertyAction
+                {
+                    target:valuetable
+                    property:"tmp_sub_menu_no"
+                    value:1
+                }
+            //running: valuetable.main_menu_no === 1 ? true : false
+            }
+
+
+            SequentialAnimation //Hilighter continuous
+            {
+                loops:Animation.Infinite
+
+                ParallelAnimation
+                {
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thin_hilit_scale"
+                        from: 0.13
+                        to: 0.25
+                        duration: 500
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thik_hilit_scale"
+                        from: 0.16
+                        to: 0.30
+                        duration: 500
+                    }
+                }
+
+                ParallelAnimation
+                {
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thin_hilit_scale"
+                        from: 0.25
+                        to: 0.35
+                        duration: 750
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thik_hilit_scale"
+                        from: 0.30
+                        to: 0.42
+                        duration: 750
+                    }
+                }
+
+                ParallelAnimation
+                {
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thin_hilit_scale"
+                        from: 0.35
+                        to: 0.98
+                        duration: 1000
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thik_hilit_scale"
+                        from: 0.42
+                        to: 1.18
+                        duration: 1000
+                    }
+                }
+               // running: valuetable.main_menu_no === 1 ? true : false
+            }
+        running: valuetable.main_menu_no === 1 ? true : false
+        }
+/**************************************** Main menu end **************************************/
+
+/*********************************** func/theme menu start **********************************/
+        SequentialAnimation
+        {
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target:valuetable
+                    property: "menu_glow_opac"
+                    from: 0.5
+                    to: 1
+                    duration: 200
+                }
+
+                NumberAnimation
+                {
+                    target:valuetable
+                    property: "menu_glow_opac"
+                    from: 1
+                    to: 0.5
+                    duration: 200
+                }
+
+            //running: valuetable.main_menu_no === 1 ? true : false
+            }
+
+
+            SequentialAnimation //Hilighter continuous
+            {
+                loops:Animation.Infinite
+
+                ParallelAnimation
+                {
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thin_hilit_scale"
+                        from: 0.13
+                        to: 0.25
+                        duration: 500
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thik_hilit_scale"
+                        from: 0.16
+                        to: 0.30
+                        duration: 500
+                    }
+                }
+
+                ParallelAnimation
+                {
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thin_hilit_scale"
+                        from: 0.25
+                        to: 0.35
+                        duration: 750
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thik_hilit_scale"
+                        from: 0.30
+                        to: 0.42
+                        duration: 750
+                    }
+                }
+
+                ParallelAnimation
+                {
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thin_hilit_scale"
+                        from: 0.35
+                        to: 0.98
+                        duration: 1000
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_thik_hilit_scale"
+                        from: 0.42
+                        to: 1.18
+                        duration: 1000
+                    }
+                }
+               // running: valuetable.main_menu_no === 1 ? true : false
+            }
+        running: valuetable.main_menu_no === 2 ? true : false
+        }
+/**************************************** func/theme menu end **************************************/
+
+}

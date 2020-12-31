@@ -1,0 +1,1029 @@
+import QtQuick 2.4
+import QtQuick.Controls 1.3
+import QtQuick.Window 2.2
+import QtQuick.Dialogs 1.2
+
+
+Item
+{
+ id: item1
+
+Window {
+
+    objectName: "base_window"
+    id: basewindow
+    width: 1786
+    height: 695
+    color: "#000000"
+    visible: true
+
+    signal qSig_Main_Menu(string msg)
+    signal qSig_Sub_Menu(string msg)
+    signal qSig_Ent_Menu(string msg)
+
+    function main_menu( value2 )
+    {
+        if((valuetable.tmp_sub_menu_no == 1) || (valuetable.tmp_sub_menu_no == 2))
+        {
+            if((valuetable.sub_menu_no < 1) ||  (valuetable.sub_menu_no > 3))
+            {
+                valuetable.sub_menu_no = 1;
+            }
+            else
+            {
+                if((value2 < 1) ||  (value2 > 3))
+                {
+                    valuetable.sub_menu_no = 1;
+                }
+                else
+                {
+                    valuetable.sub_menu_no = value2;
+                }
+            }
+        }
+        else
+        {
+            valuetable.sub_menu_no = 0;
+        }
+    }
+
+    function func_menu( value2 )
+    {
+        if((valuetable.func_sub_menu_no < 1) ||  (valuetable.func_sub_menu_no > 4))
+        {
+            valuetable.func_sub_menu_no = 1;
+        }
+        else
+        {
+            if((value2 < 1) ||  (value2 > 4))
+            {
+                valuetable.func_sub_menu_no = 1;
+            }
+            else
+            {
+                valuetable.func_sub_menu_no = value2;
+            }
+        }
+    }
+
+    function theme_menu( value2 )
+    {
+        if((valuetable.theme_sub_menu_no < 1) ||  (valuetable.theme_sub_menu_no > 3))
+        {
+            valuetable.theme_sub_menu_no = 1;
+        }
+        else
+        {
+            if((value2 < 1) ||  (value2 > 3))
+            {
+                valuetable.theme_sub_menu_no = 1;
+            }
+            else
+            {
+                valuetable.theme_sub_menu_no = value2;
+            }
+        }
+    }
+
+    function qml_slot(value1,value2,value3,value4,value5,value6)
+    {
+        // console.debug("values:",value1,value2,value3,value4,value5,value6)
+        /*valuetable.spd_fill_angle = value1/10;
+        valuetable.spd_fill_x = value2;
+        valuetable.spd_fill_y = value3;
+
+        valuetable.tach_fill_angle = value4/10;
+        valuetable.tach_fill_x = value5;
+        valuetable.tach_fill_y = value6;*/
+        valuetable.main_menu_no = value1;
+        valuetable.ent_menu_no = value3;
+
+        if(valuetable.main_menu_no == 1)
+        {
+            main_menu(value2);
+        }
+        else if(valuetable.main_menu_no == 2)
+        {
+            func_menu(value2);
+        }
+        else if(valuetable.main_menu_no == 3)
+        {
+            theme_menu(value2);
+        }
+        console.debug("values:",valuetable.main_menu_no,valuetable.sub_menu_no,
+                                valuetable.func_sub_menu_no,valuetable.theme_sub_menu_no,
+                                valuetable.ent_menu_no,valuetable.tmp_sub_menu_no);
+
+    }
+
+    /************************************* Speed task start *****************************/
+    Image {
+        id: id_Spd_bg
+        x: 42
+        y: 41
+        antialiasing: true
+        source: "image/speed/Spd_bg.png"
+
+        Image {
+            id: id_Spd_fill
+            x: valuetable.spd_fill_x
+            y: valuetable.spd_fill_y
+            rotation: valuetable.spd_fill_angle
+            transformOrigin: Item.TopLeft
+            source: "image/speed/Spd_fill.png"
+        }
+
+        Image {
+            id: id_Spd_grad
+            x: 0
+            y: 0
+            antialiasing: true
+            source: "image/speed/Spd_grad.png"
+        }
+    }
+    /************************************* Speed task end *****************************/
+
+    /************************************* Tach task start *****************************/
+    Image {
+        id: id_Tach_bg
+        x: 1049
+        y: 41
+        antialiasing: true
+        source: "image/tach/Tach_bg.png"
+
+        Image {
+            id: id_Tach_fill
+            x: valuetable.tach_fill_x
+            y: valuetable.tach_fill_y
+            rotation: valuetable.tach_fill_angle
+            transformOrigin: Item.TopLeft
+            source: "image/tach/Tach_fill.png"
+        }
+
+        Image {
+            id: id_Tach_grad
+            x: 41
+            y: 0
+            antialiasing: true
+            source: "image/tach/Tach_grad.png"
+        }
+    }
+    /************************************* Tach task end *****************************/
+
+    /************************************* Speed Tach mask start *****************************/
+    Image {
+        id: id_Main_spd_tach_mask
+        x: 0
+        y: 0
+        z: 5
+        source: "image/main/Main_spd_tach_mask.png"
+
+        Image {
+            id: id_centre_blk
+            x: 0
+            y: 0
+            z: 1
+            source: "image/main/centre_ blk.png"
+
+            TextInput {
+                id: textInput1
+                x: 100
+                y: 0
+                width: 200
+                height: 52
+                color: "#f7f6f6"
+                text: qsTr("0")
+                font.pixelSize: 36
+
+                onEditingFinished:
+                {
+                    basewindow.qSig_Main_Menu(text)
+                }
+
+            }
+
+            TextInput {
+                id: textInput2
+                x: 100
+                y: 100
+                width: 200
+                height: 52
+                color: "#f7f6f6"
+                text: qsTr("0")
+                font.pixelSize: 36
+
+                onEditingFinished:
+                {
+                    basewindow.qSig_Sub_Menu(text)
+                }
+            }
+
+            TextInput {
+                id: textInput3
+                x: 100
+                y: 200
+                width: 200
+                height: 52
+                color: "#f7f6f6"
+                text: qsTr("0")
+                font.pixelSize: 36
+
+                onEditingFinished:
+                {
+                    basewindow.qSig_Ent_Menu(text)
+                }
+            }
+        }
+    }
+    /************************************* Speed Tach mask end *****************************/
+    Valuetable
+    {
+        id: valuetable
+    }
+
+    /******************************************** Main Menu start******************************************/
+    Rectangle {
+        id: id_Main_menu
+        x: valuetable.menu_x
+        y: 220
+        width: 525
+        height: 244
+        color: "#000000"
+        transformOrigin: Item.Left
+        scale : 1
+        clip: true
+        visible:valuetable.main_menu_no === 1 ? true : false
+        z: 6
+
+        Image {
+            id: id_Menu_sel_hilit
+            x: -395
+            y: -341
+            scale: valuetable.menu_ent_hilit_scale
+            z: 0
+            visible: valuetable.ent_menu_no === 1 ? true : false
+            source: "image/menu/menu_sel_hilit.png"
+
+            ParallelAnimation
+            {
+                SequentialAnimation /*********** for func menu **********************/
+                {
+                    NumberAnimation
+                    {
+                        target:valuetable
+                        property: "menu_glow_opac"
+                        from: 0.5
+                        to: 1
+                        duration: 200
+                    }
+
+                    NumberAnimation
+                    {
+                        target:valuetable
+                        property: "menu_glow_opac"
+                        from: 1
+                        to: 0.5
+                        duration: 200
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_ent_hilit_scale"
+                        from: 0
+                        to: 1
+                        duration: 1000
+                    }
+
+                    PropertyAction
+                    {
+                        target:valuetable
+                        property:"tmp_sub_menu_no"
+                        value:2
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_x"
+                        from: 630
+                        to: 830
+                        duration: 2000
+                    }
+
+                    running: valuetable.ent_menu_no === 1 &&
+                             valuetable.sub_menu_no === 1
+                             ? true : false
+                    onStopped:
+                    {
+                        basewindow.qSig_Main_Menu(2)
+                        basewindow.qSig_Sub_Menu(0)
+                        basewindow.qSig_Ent_Menu(0)
+                    }
+                }
+
+     //           SequentialAnimation /******************* for theme menu **************/
+  /*              {
+                    NumberAnimation
+                    {
+                        target:valuetable
+                        property: "menu_glow_opac"
+                        from: 0.5
+                        to: 1
+                        duration: 200
+                    }
+
+                    NumberAnimation
+                    {
+                        target:valuetable
+                        property: "menu_glow_opac"
+                        from: 1
+                        to: 0.5
+                        duration: 200
+                    }
+
+                    NumberAnimation
+                    {
+                        target: valuetable
+                        property: "menu_ent_hilit_scale"
+                        from: 0
+                        to: 1
+                        duration: 1000
+                    }
+
+                    PropertyAction
+                    {
+                        target:valuetable
+                        property:"tmp_sub_menu_no"
+                        value:2
+                    }
+
+                    running: valuetable.ent_menu_no === 1 &&
+                             valuetable.sub_menu_no === 2
+                             ? true : false
+                    onStopped:
+                    {
+                        basewindow.qSig_Main_Menu(3)
+                        basewindow.qSig_Sub_Menu(0)
+                        basewindow.qSig_Ent_Menu(0)
+                    }
+                }*/
+                running: valuetable.ent_menu_no === 1 ? true : false
+            }
+        }
+
+        Image {
+            id: id_Menu_sel_all
+            x: -395
+            y: -1
+            z: 0
+            source: "image/menu/Menu_sel_all.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+
+        Image {
+            id: id_Menu_thin_hilit
+            x: -433
+            y: -376
+            scale: valuetable.menu_thin_hilit_scale
+            z: 0
+            source: "image/menu/Menu_thin_hilit.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+
+        Image {
+            id: id_Menu_thick_hilit
+            x: -438
+            y: -375
+            scale: valuetable.menu_thik_hilit_scale
+            source: "image/menu/Menu_thick_hilit.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+
+        Image {
+            id: id_Main_menu1
+            x: 0
+            y: 0
+            z: 1
+            source: "image/menu/menu3/menu3_sel1.png"
+            visible: valuetable.sub_menu_no === 1 && valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+        Image {
+            id: id_Main_menu2
+            x: 0
+            y: 0
+            z: 2
+            source: "image/menu/menu3/menu3_sel2.png"
+            visible: valuetable.sub_menu_no === 2 && valuetable.tmp_sub_menu_no == 1 ? true : false
+
+        }
+
+        Image {
+            id: id_main_menu3
+            x: 0
+            y: 0
+            z: 3
+            source: "image/menu/menu3/menu3_sel3.png"
+            visible: valuetable.sub_menu_no === 3 && valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+        Image {
+            id: id_Menu_glow
+            x: -8
+            y: 43
+            z: 4
+            opacity: valuetable.menu_glow_opac
+            scale : valuetable.menu_scale
+            source: "image/menu/Menu_glow.png"
+            visible: true
+        }
+
+        Image {
+            id: id_Menu_dot_circle
+            x: 23
+            y: 73
+            z: 5
+            scale : valuetable.menu_scale
+            source: "image/menu/Menu_dot_circle.png"
+            visible: true
+        }
+
+        Image {
+            id: id_Mode_fun
+            x: 33
+            y: 90
+            z: 6
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            source: "image/menu/Mode_fun.png"
+            visible: valuetable.sub_menu_no === 1 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.sub_menu_no === 1 ? true : false
+            }
+        }
+
+        Image {
+            id: id_Mode_theme
+            x: 33
+            y: 90
+            z: 7
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            source: "image/menu/Mode_theme.png"
+            visible: valuetable.sub_menu_no === 2 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.sub_menu_no === 2 ? true : false
+            }
+        }
+
+        Image {
+            id: id_Mode_set
+            x: 33
+            y: 90
+            z: 8
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            source: "image/menu/Mode_set.png"
+            visible: valuetable.sub_menu_no === 3 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.sub_menu_no === 3 ? true : false
+            }
+        }
+    }
+/************************************* Main menu end *******************************/
+
+/************************************* Func menu start *******************************/
+    Rectangle {
+        id: id_Func_menu
+        x: 459
+        y: 220
+        width: 918
+        height: 244
+        color: "#000000"
+        z: 7
+        clip: true
+        visible : valuetable.main_menu_no === 2 ? true : false
+
+        Image {
+            id: id_Func_menu_sel_hilit
+            x: 1
+            y: -336
+            scale: 0.1
+            source: "image/menu/menu_sel_hilit.png"
+        }
+
+        Image {
+            id: id_Func_menu_sel_all
+            x: 0
+            y: 0
+            scale: 1
+            source: "image/menu/Menu_sel_all.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+        Image {
+            id: id_Func_menu_thin_hilit
+            x: -37
+            y: -374
+            scale: valuetable.menu_thin_hilit_scale
+            source: "image/menu/Menu_thin_hilit.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+        Image {
+            id: id_Func_menu_thick_hilit
+            x: -41
+            y: -373
+            scale: valuetable.menu_thik_hilit_scale
+            source: "image/menu/Menu_thick_hilit.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+        Image {
+            id: id_Func_menu1
+            x: 0
+            y: 0
+            source: "image/menu/menu4/menu4_sel1.png"
+            visible: valuetable.func_sub_menu_no === 1 ? true : false
+        }
+
+        Image {
+            id: id_Func_menu2
+            x: 0
+            y: 0
+            source: "image/menu/menu4/menu4_sel2.png"
+            visible: valuetable.func_sub_menu_no === 2 ? true : false
+        }
+
+        Image {
+            id: id_Func_menu3
+            x: 0
+            y: 0
+            source: "image/menu/menu4/menu4_sel3.png"
+            visible: valuetable.func_sub_menu_no === 3 ? true : false
+        }
+
+        Image {
+            id: id_Func_menu4
+            x: 0
+            y: 0
+            source: "image/menu/menu4/menu4_sel4.png"
+            visible: valuetable.func_sub_menu_no === 4 ? true : false
+        }
+
+        Image {
+            id: id_Func_menu_glow
+            x: 383
+            y: 46
+            source: "image/menu/Menu_glow.png"
+        }
+
+        Image {
+            id: id_Func_menu_dot_circle
+            x: 414
+            y: 77
+            source: "image/menu/Menu_dot_circle.png"
+        }
+
+        Image {
+            id: id_Func_mode_GPS
+            x: 424
+            y: 93
+            source: "image/menu/Mode_GPS.png"
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            visible: valuetable.func_sub_menu_no === 1 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.func_sub_menu_no === 1 ? true : false
+            }
+        }
+
+        Image {
+            id: id_Func_mode_phbook
+            x: 431
+            y: 90
+            source: "image/menu/Mode_phbook.png"
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            visible: valuetable.func_sub_menu_no === 2 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.func_sub_menu_no === 2 ? true : false
+            }
+        }
+
+        Image {
+            id: id_Func_mode_tpms
+            x: 433
+            y: 98
+            source: "image/menu/Mode_tpms.png"
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            visible: valuetable.func_sub_menu_no === 3 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.func_sub_menu_no === 3 ? true : false
+            }
+        }
+
+        Image {
+            id: id_Func_mode_trip
+            x: 429
+            y: 95
+            source: "image/menu/Mode_trip.png"
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            visible: valuetable.func_sub_menu_no === 4 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.func_sub_menu_no === 4 ? true : false
+            }
+        }
+    }
+    /******************************************** Func Menu end******************************************/
+
+    /******************************************** theme Menu start******************************************/
+    Rectangle {
+        id: id_Theme_menu
+        x: 630
+        y: 220
+        width: 525
+        height: 244
+        color: "#000000"
+        transformOrigin: Item.Left
+        scale : 1
+        clip: true
+        visible:valuetable.main_menu_no === 3 ? true : false
+        z: 8
+
+        Image {
+            id: id_Theme_menu_sel_hilit
+            x: -395
+            y: -341
+            scale: 0.5//valuetable.menu_ent_hilit_scale
+            z: 0
+            visible: valuetable.main_menu_no === 3 ? true : false
+            source: "image/menu/menu_sel_hilit.png"
+
+/*            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target:valuetable
+                    property: "menu_glow_opac"
+                    from: 0.5
+                    to: 1
+                    duration: 200
+                }
+
+                NumberAnimation
+                {
+                    target:valuetable
+                    property: "menu_glow_opac"
+                    from: 1
+                    to: 0.5
+                    duration: 200
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_ent_hilit_scale"
+                    from: 0
+                    to: 1
+                    duration: 1000
+                }
+
+                PropertyAction
+                {
+                    target:valuetable
+                    property:"tmp_sub_menu_no"
+                    value:2
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_x"
+                    from: 630
+                    to: 830
+                    duration: 2000
+                }
+
+                running: valuetable.ent_menu_no === 1 ? true : false
+                onStopped:
+                {
+                    basewindow.qSig_Main_Menu(2)
+                    basewindow.qSig_Sub_Menu(0)
+                    basewindow.qSig_Ent_Menu(0)
+                }
+            }*/
+        }
+
+        Image {
+            id: id_Theme_menu_sel_all
+            x: -395
+            y: -1
+            z: 0
+            source: "image/menu/Menu_sel_all.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+
+        Image {
+            id: id_Theme_menu_thin_hilit
+            x: -433
+            y: -376
+            scale: valuetable.menu_thin_hilit_scale
+            z: 0
+            source: "image/menu/Menu_thin_hilit.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+
+        Image {
+            id: id_Theme_menu_thick_hilit
+            x: -438
+            y: -375
+            scale: valuetable.menu_thik_hilit_scale
+            source: "image/menu/Menu_thick_hilit.png"
+            visible: valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+        Image {
+            id: id_Theme_menu1
+            x: 0
+            y: 0
+            z: 1
+            source: "image/menu/menu3/menu3_sel1.png"
+            visible: valuetable.theme_sub_menu_no === 1 && valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+        Image {
+            id: id_Theme_menu2
+            x: 0
+            y: 0
+            z: 2
+            source: "image/menu/menu3/menu3_sel2.png"
+            visible: valuetable.theme_sub_menu_no === 2 && valuetable.tmp_sub_menu_no == 1 ? true : false
+
+        }
+
+        Image {
+            id: id_Theme_menu3
+            x: 0
+            y: 0
+            z: 3
+            source: "image/menu/menu3/menu3_sel3.png"
+            visible: valuetable.theme_sub_menu_no === 3 && valuetable.tmp_sub_menu_no == 1 ? true : false
+        }
+
+        Image {
+            id: id_Theme_menu_glow
+            x: -8
+            y: 43
+            z: 4
+            opacity: valuetable.menu_glow_opac
+            scale : valuetable.menu_scale
+            source: "image/menu/Menu_glow.png"
+            visible: true
+        }
+
+        Image {
+            id: id_Theme_menu_dot_circle
+            x: 23
+            y: 73
+            z: 5
+            scale : valuetable.menu_scale
+            source: "image/menu/Menu_dot_circle.png"
+            visible: true
+        }
+
+        Image {
+            id: id_Theme_mode_theme
+            x: 33
+            y: 90
+            z: 6
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            source: "image/menu/Mode_theme.png"
+            visible: valuetable.theme_sub_menu_no === 1 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.theme_sub_menu_no === 1 ? true : false
+            }
+        }
+
+        Image {
+            id: id_Theme_mode_fun
+            x: 33
+            y: 90
+            z: 7
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            source: "image/menu/Mode_fun.png"
+            visible: valuetable.theme_sub_menu_no === 2 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.theme_sub_menu_no === 2 ? true : false
+            }
+        }
+
+        Image {
+            id: id_Theme_mode_set
+            x: 33
+            y: 90
+            z: 8
+            transform: Rotation { origin.x: 36; origin.y: 36; axis { x: 0; y: 1; z: 0 } angle: valuetable.menu_icon_deg_rev }
+            source: "image/menu/Mode_set.png"
+            visible: valuetable.theme_sub_menu_no === 3 ? true : false
+
+            SequentialAnimation
+            {
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 0
+                    to: 90
+                    duration: 500
+                }
+
+                NumberAnimation
+                {
+                    target: valuetable
+                    property: "menu_icon_deg_rev"
+                    from: 90
+                    to: 0
+                    duration: 500
+                }
+                running: valuetable.theme_sub_menu_no === 3 ? true : false
+            }
+        }
+    }
+/************************************* Theme menu end *******************************/
+
+
+}
+}
