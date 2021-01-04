@@ -15,7 +15,7 @@ android-no-sdk {
 } else:unix {
     isEmpty(target.path) {
         qnx {
-            target.path = /tmp/$${TARGET}/bin
+            target.path = /usr/bin
         } else {
             target.path = /usr/bin
         }

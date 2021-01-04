@@ -7,10 +7,10 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-   QQmlApplicationEngine engine;
-    //MainWindow objmain;
+   // QQmlApplicationEngine engine;
+    MainWindow objmain;
 
-   engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+   // engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
 }

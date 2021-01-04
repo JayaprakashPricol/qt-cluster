@@ -14,13 +14,10 @@ include(./qextserialport-1.2rc/src/qextserialport.pri)
 QML_IMPORT_PATH =
 
 # Default rules for deployment.
-#include(deployment.pri)
+include(deployment.pri)
 
 HEADERS += \
     pointer.h \
     general.h \
     canworkerthread.h \
     canwrapper.h
-
-OTHER_FILES += \
-    main.qml
