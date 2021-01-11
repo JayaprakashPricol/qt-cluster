@@ -1,6 +1,6 @@
 import QtQuick 2.0
 //import QtQuick.Window 2.2
-import QtQuick.Window 2.0
+import QtQuick.Window 2.1
 
 
 Item
@@ -47,7 +47,7 @@ Window {
 
     objectName: "base_window"
     id: basewindow
-    flags: /*Qt.Window |*/ Qt.FramelessWindowHint
+    flags: Qt.FramelessWindowHint
     x: 0
     y: 0
     width: 1920
